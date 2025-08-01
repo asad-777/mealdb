@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="garden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recepie Finder</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite,search"
+    />
+  </head>
+  <body>
+    <div
+      class="navbar bg-base-100 shadow-lg rounded-xl px-8 py-2 mt-4 border w-[90%] mx-auto"
+    >
+      <div class="flex-1 navbar-start">
+        <a class="btn btn-ghost text-xl">Recipe Finder</a>
+      </div>
+      <div class="flex justify-center gap-8 navbar-end">
+        <label class="input">
+          <input type="text" required placeholder="Search a recipe name" />
+          <button class="btn btn-ghost">
+            <span class="material-symbols-outlined"> search </span>
+          </button>
+        </label>
+        <button class="btn btn-solid">
+          <span class="material-symbols-outlined"> favorite </span>Favourites
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
