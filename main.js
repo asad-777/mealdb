@@ -45,12 +45,53 @@ function getdataoutside(data) {
     }
 }
 
+
+
 async function getmeal(name) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
         .then(res => res.json()).then(json => data = json).catch(err => data = err)
     const response = getdataoutside(data);
-    console.log(response)
+    if (response == "No recipe found") {
+        document.getElementById(`placeholdermain`).classList.remove(`hidden`)
+        document.getElementById(`placeholderskeleton`).classList.add(`hidden`)
+        document.getElementById(`placeholdermain`).innerHTML = `No recipe found, try searching something else   `
+    }
+    else {
+        document.querySelectorAll('.skeleton').forEach(el => {
+            el.classList.remove('skeleton');
+        });
+        document.querySelectorAll('.opacity-0').forEach(el => {
+            el.classList.remove('skeleton');
+        });
+        document.getElementById(`imgthmb`).src = response.thumbnail
+        document.getElementById(`title`).innerHTML = response.name
+        if (response.tags == null) {
+            document.getElementById(`location`).innerHTML = `${response.location}`
+        }
+        else {
+            document.getElementById(`location`).innerHTML = `${response.location} - ${response.tags}`
+        }
+        document.getElementById(`link`).innerHTML = `Video Tutorial`
+        document.getElementById(`link`).href = response.tutorial
+        document.getElementById(`hingred`).innerHTML = `Ingredients`
+        document.getElementById(`inggaas`).innerHTML = ``
+        let ingglist = ``
+        for (x of response.ingredient) {
+            ingglist += `<li><span class="font-semibold">${x.ingre.trim()}</span> (${x.qunat.trim()})</li>`
+        }
+        document.getElementById(`inggaas`).innerHTML = ingglist
+        document.getElementById(`hinst`).innerHTML = `Recipe Instructions`
+        document.getElementById(`paraasn`).innerHTML = response.recipe
+    }
 }
 
 
-getmeal("lamb biryani")
+function damn() {
+    const ask = document.getElementById(`inputmain`).value
+
+    if (ask) {
+        document.getElementById(`placeholdermain`).classList.add(`hidden`)
+        document.getElementById(`placeholderskeleton`).classList.remove(`hidden`)
+        getmeal(ask)
+    }
+}
